@@ -17,17 +17,20 @@ namespace MRZCodeParserNETStandard.Helpers
 
         internal CodeTypeEnum DetectType()
         {
-            CodeTypeEnum type = lines.Count() == 3 && lines.First().Length == 30
-                ? CodeTypeEnum.TD1
-                : lines.First().Length == 44 && lines.Count() == 2
-                    ? lines.First()[0] == 'P'
-                        ? CodeTypeEnum.TD3
-                        : CodeTypeEnum.MRVA
-                    : lines.First().Length == 36 && lines.Count() == 2
-                        ? lines.First()[0] == 'V'
-                            ? CodeTypeEnum.MRVB
-                            : CodeTypeEnum.TD2
-                        : CodeTypeEnum.UNKNOWN;
+            CodeTypeEnum type;
+
+            if (lines.Count() == 3 && lines.First().StartsWith("ID"))
+                type = CodeTypeEnum.TD1;
+            else if (lines.Count() == 2 && lines.First().StartsWith("ID"))
+                type = CodeTypeEnum.TD2;
+            else if (lines.Count() == 2 && lines.First()[0] == 'P')
+                type = CodeTypeEnum.TD3;
+            else if (lines.Count() == 2 && lines.First()[0] == 'V' && lines.First().Length == 44)
+                type = CodeTypeEnum.MRVA;
+            else if (lines.Count() == 2 && lines.First()[0] == 'V' && lines.First().Length == 36)
+                type = CodeTypeEnum.MRVB;
+            else
+                type = CodeTypeEnum.UNKNOWN;
 
             return type;
         }

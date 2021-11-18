@@ -8,6 +8,7 @@
     <Description>MRZ code parser for .NET Standard 2.0. Code taken and adapted from:https://github.com/snifter/MRZCode.NET</Description>
     <PackageProjectUrl>https://github.com/Inspirare-LLC/MRZCodeParser.NETStandard.2.0</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Inspirare-LLC/MRZCodeParser.NETStandard.2.0</RepositoryUrl>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 </Project>
